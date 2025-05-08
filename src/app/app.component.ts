@@ -26,11 +26,16 @@ CREATE_tarefa(descricaoNovaTarefa: string) {
     resultado => { console.log(resultado); this.READ_tarefas(); });
   }
 
-READ_tarefas() {
-  this.http.get<Tarefa[]>(`${this.apiURL}/api/getAll`).subscribe(
-    resultado => this.arrayDeTarefas=resultado);
-   
-}
+  READ_tarefas() {
+    this.http.get<Tarefa[]>(`${this.apiURL}/api/getAll`).subscribe(
+      resultado => {
+        this.arrayDeTarefas.length = 0; // limpa completamente o array
+        this.arrayDeTarefas.push(...resultado); // insere novas tarefas
+        console.log('Tarefas atualizadas:', this.arrayDeTarefas);
+      }
+    );
+  }
+
 DELETE_tarefa(tarefaAserRemovida : Tarefa) {
   var indice = this.arrayDeTarefas.indexOf(tarefaAserRemovida);
  var id = this.arrayDeTarefas[indice]._id;
