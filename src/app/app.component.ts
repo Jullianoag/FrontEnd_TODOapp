@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Tarefa } from "./tarefa";
 import { HttpClient } from '@angular/common/http';
 
@@ -18,6 +18,10 @@ export class AppComponent {
 constructor(private http: HttpClient) {
   this.apiURL = 'https://backend-todoapp-5kl8.onrender.com';
 this.READ_tarefas();
+}
+  
+ngOnInit(): void {
+  this.READ_tarefas(); // será chamado no refresh
 }
 
 CREATE_tarefa(descricaoNovaTarefa: string) {
