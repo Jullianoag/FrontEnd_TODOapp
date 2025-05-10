@@ -1,23 +1,12 @@
 <div class="main">
-  <h1>Julliano 242960 - Laryssa 240274</h1>
+  <h1>Julliano 242960</h1>
+  <h1>Laryssa 240274</h1>
+  <input class="lg-text-input" #campoNovoItem />     
+  <button class="btn-primary" (click)="CREATE_tarefa(campoNovoItem.value)">Adicionar Tarefa</button>
 
-  <input class="lg-text-input" #campoNovoItem 
-         (keydown.enter)="CREATE_tarefa(campoNovoItem.value); campoNovoItem.value=''" />
-
-
-  <button class="btn-primary" (click)="CREATE_tarefa(campoNovoItem.value); campoNovoItem.value=''">
-    Adicionar Tarefa
-  </button>
-
-  <div *ngIf="carregando"></div>
-
-
-<ul *ngIf="!carregando && !erroCarregamento">
-  <li *ngFor="let tarefa of arrayDeTarefas">
-    <app-item [tarefa]="tarefa" 
-              (Remover)="DELETE_tarefa(tarefa)" 
-              (modificaTarefa)="UPDATE_tarefa(tarefa)">
-    </app-item>
-  </li>
-</ul>
+  <ul>
+      <li *ngFor="let tarefaDoLoop of arrayDeTarefas">
+          <app-item [tarefa]="tarefaDoLoop" (removeTarefa)="DELETE_tarefa(tarefaDoLoop)" (modificaTarefa)="UPDATE_tarefa(tarefaDoLoop)"></app-item>
+      </li>
+  </ul>
 </div>
