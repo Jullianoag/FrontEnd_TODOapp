@@ -9,9 +9,15 @@
     Adicionar Tarefa
   </button>
 
-  <ul>
-    <li *ngFor="let tarefaDoLoop of arrayDeTarefas">
-      <app-item [tarefa]="tarefaDoLoop" (Remover)="DELETE_tarefa(tarefaDoLoop)" (modificaTarefa)="UPDATE_tarefa(tarefaDoLoop)"></app-item>
-    </li>
-  </ul>
+  <div *ngIf="carregando"></div>
+
+
+<ul *ngIf="!carregando && !erroCarregamento">
+  <li *ngFor="let tarefa of arrayDeTarefas">
+    <app-item [tarefa]="tarefa" 
+              (Remover)="DELETE_tarefa(tarefa)" 
+              (modificaTarefa)="UPDATE_tarefa(tarefa)">
+    </app-item>
+  </li>
+</ul>
 </div>
