@@ -15,7 +15,7 @@ apiURL : string;
 
   constructor(private http: HttpClient) 
   {    
-    this.apiURL = 'https://back-todoapp-7bqd.onrender.com';
+    this.apiURL = 'https://backend-todoapp-5kl8.onrender.com';
     this.READ_tarefas();   
   }
 
