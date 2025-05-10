@@ -31,11 +31,25 @@ CREATE_tarefa(descricaoNovaTarefa: string) {
     resultado => { console.log(resultado); this.READ_tarefas(); });
   }
 
-  READ_tarefas() 
-  {     
-    this.http.get<Tarefa[]>(`${this.apiURL}/api/getAll`).subscribe( resultado => this.arrayDeTarefas=resultado); 
-  }
+  carregando = true;
+erroCarregamento = false;
 
+READ_tarefas() {
+  this.carregando = true;
+  this.erroCarregamento = false;
+
+  this.http.get<Tarefa[]>(`${this.apiURL}/api/getAll`).subscribe(
+    resultado => {
+      this.arrayDeTarefas = resultado;
+      this.carregando = false;
+    },
+    erro => {
+      console.error('Erro ao buscar tarefas:', erro);
+      this.erroCarregamento = true;
+      this.carregando = false;
+    }
+  );
+}
 DELETE_tarefa(tarefaAserRemovida : Tarefa) {
   var indice = this.arrayDeTarefas.indexOf(tarefaAserRemovida);
  var id = this.arrayDeTarefas[indice]._id;
