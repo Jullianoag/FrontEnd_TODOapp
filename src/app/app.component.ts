@@ -17,10 +17,12 @@ export class AppComponent implements OnInit  {
 
 constructor(private http: HttpClient) {
   this.apiURL = 'https://backend-todoapp-5kl8.onrender.com';
+  this.arrayDeTarefas = [];
 this.READ_tarefas();
 }
   
 ngOnInit(): void {
+  this.arrayDeTarefas = [];
   this.READ_tarefas(); // será chamado no refresh
 }
 
